@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Главная</title>
+    <link rel="stylesheet" href="{% static './css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>Поиск вакансий</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Главная</a></li>
+          <li><a href="{% url 'vacancies_list' %}">Вакансии</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>Доступные вакансии</h2>
+      {% if vacancies %}
+      <ul>
+        {% for vacancy in vacancies %}
+        <li>
+          <strong>{{ vacancy.title }}</strong> - {{ vacancy.company }}, з/п {{ vacancy.salary }} тенге
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>Нет доступных вакансий</p>
+      {% endif %}
+    </main>
+  </body>
+</html>
